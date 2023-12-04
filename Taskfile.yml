@@ -1,0 +1,31 @@
+# https://taskfile.dev
+
+version: "3"
+
+includes:
+  public: https://raw.githubusercontent.com/fredrikaverpil/poc-tasks/main/Taskfile.yml
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    desc: Just a plain old default test task.
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  top-task:
+    desc: Top task to test sub-tasks.
+    cmds:
+      - echo "Hello World from top-task"
+    deps:
+      - sub-task
+    silent: false
+
+  sub-task:
+    desc: Sub-task to test sub-tasks.
+    cmds:
+      - echo "Hello World from sub-task"
+    internal: true
+    silent: false
